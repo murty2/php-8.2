@@ -1,8 +1,8 @@
-# Run php version 8.2.35 on any Linux operating system
+# Run php version 8.2 on any Linux operating system
 
 ## Download necessary binaries
 Download php (Command Line Interface), php-cgi (FastCGI testing tool) or php-fpm from the Releases page
-https://github.com/murty2/php-8.2.35/releases
+https://github.com/murty2/php-8.2/releases
 
 ## Run manually
 ```
@@ -19,7 +19,7 @@ export SPC_EXTRA_LIBS="-lsystemd -lcap -llzma -lzstd"
 ```
 
 ## How to create the binaries (php, php-fpm, php-cgi) from source
-* First create and login to a docker that works for version 8.2.35
+* First create and login to a docker that works for version 8.2
 ```
 docker run --rm -it alpine:3.18 sh
 ```
@@ -49,7 +49,9 @@ EXTENSIONS="apcu,bcmath,bz2,calendar,ctype,curl,dom,exif,fileinfo,filter,ftp,gd,
 LIBS="libjpeg,libwebp,freetype"
 
 # Download all sources. If it fails, re-run until it succeeds (Github rate limits you)
-./spc download --with-php 8.2.35 --for-extensions "$EXTENSIONS"
+# Latest version of php 8.2
+VER=8.2.36
+./spc download --with-php $VER --for-extensions "$EXTENSIONS"
 
 # Compile everything. It will take an hour
 ./spc build "$EXTENSIONS" --with-libs="$LIBS" --build-fpm --build-cgi --build-cli
